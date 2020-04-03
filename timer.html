@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <form>
+            <input type="text" class="time" id="minutes"><p>minutes</p>
+            <input type="text" class="time" id="seconds"><p>seconds</p>
+            <input type="submit" id="submit">
+        </form>
+        <h1 id="timer">00 : 00</h1>
+        <script>
+            document.getElementById("submit").addEventListener("submit",Timer())
+            function Timer(){
+                let minutes = document.getElementById("minutes").value;
+                let seconds= document.getElementById("seconds").value;
+                let end = false;
+                let timer = document.getElementById("timer");
+                timer.innerText = minutes+":"+seconds
+                let time = setInterval(function(){
+                    
+                    seconds--;
+                    if (seconds<0) {
+                        if (minutes>=0){
+                            minutes --;
+                            seconds = 59;
+                        }
+                        else {
+                            end = true;
+                            clearInterval(time);
+                        }
+                    }
+                    timer.innerText = minutes+":"+seconds
+                },1000)
+                if (end == true) {
+                    alert("done")
+                }
+            }
+           
+            
+        </script>
+    </body>
+</html>
