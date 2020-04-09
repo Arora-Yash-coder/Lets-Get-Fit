@@ -16,6 +16,17 @@ var uiConfig = {
                                 console.log("Error adding new user: " + error);
                 });
 
+                    } else {
+                        return true;
+                    }
+                    return false;
+                },
+                uiShown: function () {
+                    // The widget is rendered.
+                    // Hide the loader.
+                    document.getElementById('loader').style.display = 'none';
+                }
+            },
             // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
             signInFlow: 'popup',
             signInSuccessUrl: 'menu.html',
