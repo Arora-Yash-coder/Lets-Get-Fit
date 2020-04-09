@@ -45,6 +45,15 @@ body{
   color: #fff;
   padding-top: 5%;
 }
+.workout-area{
+  font-size: 40px;
+  font-weight: 600;
+  margin-top: 100px;
+}
+.quotes{
+  font-size: 30px;
+  font-weight: 400;
+}
 .bottom-img{
   width: 100%;
   height: 70px;
