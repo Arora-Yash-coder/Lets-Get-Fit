@@ -58,3 +58,38 @@ body{
   width: 100%;
   height: 70px;
 }
+
+/*--------------------Services Section-------------------------*/
+#services{
+  padding: 80px 0;
+}
+.service-img{
+  width: 300px;
+  padding-top: 20ox;
+}
+.services{
+  padding: 20px;
+}
+.title::before{
+  content: '';
+  background-color: #7b1798;
+  height: 5px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  transform: translateY(63px);
+
+}
+.title::after{
+  content: '';
+  background-color: #7b1798;
+  height: 10px;
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  display: block;
+  transform: translateY(8px);
+
+}
