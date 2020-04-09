@@ -131,3 +131,24 @@ body{
   display: inline-block;
   font-size: 12px;
 }
+/*-------------------Footer Section------------------------------*/
+#footer{
+  background-image: linear-gradient(to right, #a517ba, #5f1782);
+  color: #fff;
+}
+.footer-box{
+  padding: 20px;
+}
+.footer-box img{
+  width : 120px;
+  margin-bottom: 20px;
+}
+.footer-box .fa{
+  margin-right: 8px;
+  font-size: 25px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  padding-top: 7px;
+  border-radius: 2px;
+}
