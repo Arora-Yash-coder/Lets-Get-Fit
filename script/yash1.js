@@ -1,75 +1,11 @@
-// function getquote() {
-//     db.collection("Quotes").doc("Quotes").onSnapshot(
-//         function (snap) {
-//             console.log(snap.data());
-//             document.getElementById("Quotes").innerHTML = snap.data().quote + " said " + snap.data().name;
-//         }
-    
-//     )
-// }
-// function adddata(params) {
-//     db.collection("cities").add({
-//         name: "Tokyo",
-//         country: "Japan"
-//     })
-//     .then(function(docRef) {
-//         console.log("Document written with ID: ", docRef.id);
-//     })
-//     .catch(function(error) {
-//         console.error("Error adding document: ", error);
-//     });    
-// }
-// function setdata() {
-//     db.collection("cities").doc("LA").set({
-//         name: "Los Angeles",
-//         state: "CA",
-//         country: "USA"
-//     })
-//     .then(function() {
-//         console.log("Document successfully written!");
-//     })
-//     .catch(function(error) {
-//         console.error("Error writing document: ", error);
-//     });
-    
-// }
-// getquote();
-// adddata();
-// setdata();
-
-        // This snippet goes at the JS section at the end of the body tag in "login.html"
-        // After firebase libraries via CDN are sourced
-        // After your firebase project API config is defined
-        // After the authentication container is created in HTML
-        // Meanwhile in firebase console, you need to 
-        // - create a project
-        // - know the api key config info
-        // - enable firestore
-        // - create rules to allow for read/write
-        // - enable authentication method (email/pwd signin)
-        
-        // Initialize the FirebaseUI Widget using Firebase.
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        var uiConfig = {
-            callbacks: {
-                signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-                    // User successfully signed in.
-                    // Return type determines whether we continue the redirect automatically
-                    // or whether we leave that to developer to handle.
-                    //------------------------------------------------------------------------------------------
-                    // The code below is modified from default snippet provided by the FB documentation.
-                    //
-                    // If the user is a "brand new" user, then create a new "user" in your own database.
-                    // Assign this user with the name and email provided.
-                    // Before this works, you must enable "Firestore" from the firebase console.
-                    // The Firestore rules must allow the user to write. 
-                    //------------------------------------------------------------------------------------------
-                    var user = authResult.user;
-                    if (authResult.additionalUserInfo.isNewUser) {
-                        
-
-
-                        db.collection("users").doc(user.uid).set({
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+var uiConfig = {
+    callbacks: {
+        signInSuccessWithAuthResult: function (authResult, redirectUrl) {            
+            var user = authResult.user;
+            if (authResult.additionalUserInfo.isNewUser) {
+            
+                db.collection("users").doc(user.uid).set({
                                 name: user.displayName,
                                 email: user.email
                             }).then(function () {
@@ -78,9 +14,9 @@
                             })
                             .catch(function (error) {
                                 console.log("Error adding new user: " + error);
-                            });
+                });
 
-                        db.collection("users").doc("users").add({
+                db.collection("users").doc("users").add({
                                 name: user.displayName,
                                 email: user.email
                             }).then(function () {
@@ -105,11 +41,7 @@
             signInFlow: 'popup',
             signInSuccessUrl: 'menu.html',
             signInOptions: [
-                // Leave the lines as is for the providers you want to offer your users.
-                //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-                //firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                
                 firebase.auth.EmailAuthProvider.PROVIDER_ID,
                 //firebase.auth.PhoneAuthProvider.PROVIDER_ID
             ],
@@ -119,8 +51,6 @@
             privacyPolicyUrl: 'menu.html',
             accountChooserEnabled: false
         };
-        // The start method will wait until the DOM is loaded.
-        // Inject the login interface into the HTML
         ui.start('#firebaseui-auth-container', uiConfig);
     
 
