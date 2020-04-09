@@ -60,7 +60,10 @@ body{
 }
 
 /*--------------------Services Section-------------------------*/
-#services{
+#services1{
+  padding: 80px 0;
+}
+#services2{
   padding: 80px 0;
 }
 .service-img{
