@@ -66,12 +66,26 @@
                     //------------------------------------------------------------------------------------------
                     var user = authResult.user;
                     if (authResult.additionalUserInfo.isNewUser) {
+                        
+
+
                         db.collection("users").doc(user.uid).set({
                                 name: user.displayName,
                                 email: user.email
                             }).then(function () {
                                 console.log("New user added to firestore");
-                                window.location.assign("main.html");
+                                window.location.assign("menu.html");
+                            })
+                            .catch(function (error) {
+                                console.log("Error adding new user: " + error);
+                            });
+
+                        db.collection("users").doc("users").add({
+                                name: user.displayName,
+                                email: user.email
+                            }).then(function () {
+                                console.log("New user added to firestore");
+                                window.location.assign("menu.html");
                             })
                             .catch(function (error) {
                                 console.log("Error adding new user: " + error);
@@ -89,7 +103,7 @@
             },
             // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
             signInFlow: 'popup',
-            signInSuccessUrl: 'main.html',
+            signInSuccessUrl: 'menu.html',
             signInOptions: [
                 // Leave the lines as is for the providers you want to offer your users.
                 //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -100,9 +114,9 @@
                 //firebase.auth.PhoneAuthProvider.PROVIDER_ID
             ],
             // Terms of service url.
-            tosUrl: 'main.html',
+            tosUrl: 'menu.html',
             // Privacy policy url.
-            privacyPolicyUrl: 'main.html',
+            privacyPolicyUrl: 'menu.html',
             accountChooserEnabled: false
         };
         // The start method will wait until the DOM is loaded.
